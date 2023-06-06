@@ -13,6 +13,12 @@ CREATE TABLE lowest_prices AS
   GROUP BY item;
 
 
+CREATE TABLE best_type AS
+  SELECT category, name
+  FROM products
+  GROUP BY category
+  HAVING MIN(MSRP/rating);
+
 CREATE TABLE shopping_list AS
   SELECT b.name, l.store
   FROM best_type as b, lowest_prices as l
